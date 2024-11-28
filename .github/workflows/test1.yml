@@ -26,7 +26,7 @@ jobs:
     # Step 3: Validate CloudFormation Template
     - name: Validate CloudFormation Template
       run: |
-        aws cloudformation validate-template --template-body file://s3-creation.yaml
+        aws cloudformation validate-template --template-body file://s3-creation.yml
         
 
     # Step 4: Deploy CloudFormation Stack
@@ -34,7 +34,7 @@ jobs:
       run: |
         aws cloudformation create-stack \
             --stack-name 3m-stack \
-            --template-body file://s3-creation.yaml \
+            --template-body file://s3-creation.yml \
             --capabilities CAPABILITY_NAMED_IAM
     # Step 5: Output the Stack Status
     - name: Check CloudFormation Stack Status

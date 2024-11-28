@@ -26,16 +26,16 @@ jobs:
     # Step 3: Validate CloudFormation Template
     - name: Validate CloudFormation Template
       run: |
-        aws cloudformation validate-template --template-body file://cloudformation-template.yaml
+        aws cloudformation validate-template --template-body file://s3-creation.yaml
         
 
     # Step 4: Deploy CloudFormation Stack
     - name: Deploy CloudFormation Stack
       run: |
-        STACK_NAME="lambda-3m"  # Stack name
-        TEMPLATE_FILE="cloudformation-template.yaml"  # CloudFormation template
-        aws cloudformation deploy --stack-name $STACK_NAME --template-file $TEMPLATE_FILE  --capabilities CAPABILITY_NAMED_IAM --region us-east-1  
-
+        aws cloudformation create-stack \
+            --stack-name 3m-stack \
+            --template-body file://s3-creation.yaml \
+            --capabilities CAPABILITY_NAMED_IAM
     # Step 5: Output the Stack Status
     - name: Check CloudFormation Stack Status
       run: |

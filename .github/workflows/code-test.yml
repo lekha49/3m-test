@@ -1,0 +1,42 @@
+name: Build Code in CodeBuild and Deploy to Lambda
+
+on:
+  push:
+    branches:
+      - dev  
+
+jobs:
+  build_and_deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code from GitHub repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up AWS CLI credentials
+      - name: Set up AWS CLI
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: us-east-1  
+
+      # Step 3: Start CodeBuild project
+      - name: Start CodeBuild Project
+        run: |
+          aws codebuild start-build --project-name LambdaBuild  
+
+      # Step 4: Upload Lambda Artifact to S3 (if not already done by CodeBuild)
+      - name: Upload Lambda Artifact to S3
+        run: |
+          aws s3 cp build/lambda_function.zip s3://your-lambda-artifacts-bucket/lambda_function.zip
+
+      # Step 5: Deploy Lambda function
+      - name: Deploy Lambda Function
+        run: |
+          aws lambda update-function-code \
+            --function-name your-lambda-function-name \
+            --s3-bucket your-lambda-artifacts-bucket \
+            --s3-key lambda_function.zip
+

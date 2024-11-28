@@ -3,7 +3,7 @@
 # with these triggers aren't fully specified in this template and include
 # placeholder values. Open this template in AWS Infrastructure Composer or your
 # favorite IDE and modify it to specify a serverless application with other AWS
-# resources.
+
 AWSTemplateFormatVersion: '2010-09-09'
 Transform: AWS::Serverless-2016-10-31
 Description: An AWS Serverless Application Model template describing your function.

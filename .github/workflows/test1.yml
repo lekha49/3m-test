@@ -39,4 +39,4 @@ jobs:
     # Step 5: Output the Stack Status
     - name: Check CloudFormation Stack Status
       run: |
-        aws cloudformation describe-stacks --stack-name $STACK_NAME --query "Stacks[0].StackStatus"
+        aws cloudformation describe-stacks --stack-name lambdastack --query "Stacks[0].StackStatus"

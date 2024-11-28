@@ -27,8 +27,7 @@ jobs:
     - name: Validate CloudFormation Template
       run: |
         aws cloudformation validate-template --template-body file://cloudformation-template.yaml
-        aws cloudformation create-stack --stack-name lambda-3m --template-body file://your-template.yaml --capabilities CAPABILITY_IAM
-
+        
 
     # Step 4: Deploy CloudFormation Stack
     - name: Deploy CloudFormation Stack

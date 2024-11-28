@@ -33,7 +33,7 @@ jobs:
     - name: Deploy CloudFormation Stack
       run: |
         aws cloudformation create-stack \
-            --stack-name 3m-stack \
+            --stack-name lambdastack \
             --template-body file://s3-creation.yml \
             --capabilities CAPABILITY_NAMED_IAM
     # Step 5: Output the Stack Status

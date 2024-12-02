@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: A simple CloudFormation template to create an S3 bucket.
+Description: A simple CloudFormation template to create an S3 bucket
 
 Resources:
   MyS3Bucket:
